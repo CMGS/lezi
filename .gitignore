@@ -1,0 +1,10 @@
+*.o
+build
+bin
+pkg
+*.tar.gz
+*.rpm
+*.deb
+*.bz2
+*.gz
+lezi
