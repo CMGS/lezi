@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"net"
+	"path"
 	"time"
 )
 
@@ -14,6 +15,7 @@ func Publishv2(input chan []*FileEvent, registrar chan []*FileEvent, config *Net
 	for events := range input {
 		for _, event := range events {
 			addr := config.Servers[rand.Int()%len(config.Servers)]
+			_, (*event.Fields)["name"] = path.Split(*event.Source)
 			if err := udpStreamer(event, addr); err != nil {
 				log.Println("Send event failed")
 				continue
